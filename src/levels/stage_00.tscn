@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://70aasvkfignj"]
+[gd_scene load_steps=10 format=4 uid="uid://70aasvkfignj"]
 
 [ext_resource type="PackedScene" uid="uid://g8vsd3xr5li4" path="res://src/interfaces/time_ui.tscn" id="1_1joem"]
 [ext_resource type="Script" path="res://src/levels/stage.gd" id="1_puler"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://c0fdavq4u7gn6" path="res://src/components/borders.tscn" id="2_gk52c"]
 [ext_resource type="PackedScene" uid="uid://dhau8xj5o3ci6" path="res://src/entities/timed_platform.tscn" id="3_h43hu"]
 [ext_resource type="PackedScene" uid="uid://s6sh8rnfc3ba" path="res://src/entities/player.tscn" id="3_mg7qb"]
-[ext_resource type="Script" path="res://src/components/borders.gd" id="3_w2n81"]
 [ext_resource type="PackedScene" uid="uid://qryojj4hv1wt" path="res://src/entities/card.tscn" id="8_amwta"]
 [ext_resource type="PackedScene" uid="uid://dvq85pgjk3hr2" path="res://src/entities/exit.tscn" id="8_r7k7q"]
 
@@ -25,7 +24,6 @@ stage_ui = NodePath("TimeUI")
 [node name="Background" parent="." instance=ExtResource("1_tpu11")]
 
 [node name="Borders" parent="." instance=ExtResource("2_gk52c")]
-script = ExtResource("3_w2n81")
 
 [node name="TileMap" type="Node2D" parent="."]
 
