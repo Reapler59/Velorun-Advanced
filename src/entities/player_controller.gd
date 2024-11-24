@@ -9,6 +9,7 @@ class_name Player
 @onready var ray_floor = $RayCasts/RayFloor
 @onready var ray_wall = $RayCasts/RayWall
 @onready var ray_conveyor = $RayCasts/RayConveyor
+@onready var ray_fast_conveyor = $RayCasts/RayFastConveyor
 
 enum Direction {LEFT, RIGHT}
 
@@ -166,6 +167,18 @@ func handle_raycast_collisions(delta) -> void:
 	if ray_conveyor.is_colliding():
 		is_on_conveyor_wall = true
 		speed_modifier_y = -100
+		
+		if velocity.y == 0:
+			velocity.y = speed_modifier_y
+		else:
+			velocity.y = move_toward(velocity.y, velocity.y + speed_modifier_y, delta)
+	else:
+		is_on_conveyor_wall = false
+		speed_modifier_y = 0
+	
+	if ray_fast_conveyor.is_colliding():
+		is_on_conveyor_wall = true
+		speed_modifier_y = -300
 		
 		if velocity.y == 0:
 			velocity.y = speed_modifier_y

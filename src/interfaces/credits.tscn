@@ -1,0 +1,89 @@
+[gd_scene load_steps=8 format=3 uid="uid://e5t1e2mqkrk2"]
+
+[ext_resource type="Script" path="res://src/interfaces/credits.gd" id="1_4enfr"]
+[ext_resource type="PackedScene" uid="uid://bsr4kcif0a44b" path="res://src/components/background.tscn" id="1_mounj"]
+[ext_resource type="Theme" uid="uid://b1b8etb0755dh" path="res://res/themes/menu.theme" id="2_2yh77"]
+[ext_resource type="FontFile" uid="uid://bl3r8uw0preii" path="res://assets/fonts/ThaleahFat.ttf" id="3_4kx0l"]
+[ext_resource type="FontFile" uid="uid://dyfteyjgkiyc8" path="res://assets/fonts/monogram.ttf" id="4_jre66"]
+[ext_resource type="Theme" uid="uid://dh8twwl5vhwf3" path="res://res/themes/close.theme" id="6_cnjmi"]
+[ext_resource type="Texture2D" uid="uid://d16bva5bur0rm" path="res://assets/sprites/icons/icon_exit.png" id="7_0w3w4"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4enfr")
+
+[node name="Background" parent="." instance=ExtResource("1_mounj")]
+speed = 160
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_2yh77")
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Programmer" type="Label" parent="MarginContainer/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_4kx0l")
+theme_override_font_sizes/font_size = 32
+text = "Programmer"
+horizontal_alignment = 1
+
+[node name="PNames" type="Label" parent="MarginContainer/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_jre66")
+text = "Reapler59"
+horizontal_alignment = 1
+
+[node name="Graphics" type="Label" parent="MarginContainer/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_4kx0l")
+theme_override_font_sizes/font_size = 32
+text = "Graphics"
+horizontal_alignment = 1
+
+[node name="GNames" type="Label" parent="MarginContainer/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_jre66")
+text = "CraftPix"
+horizontal_alignment = 1
+
+[node name="Fonts" type="Label" parent="MarginContainer/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_4kx0l")
+theme_override_font_sizes/font_size = 32
+text = "Fonts"
+horizontal_alignment = 1
+
+[node name="FNames" type="Label" parent="MarginContainer/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_jre66")
+text = "CraftPix
+Datagoblin (itch.io)
+Rick Hoppmann"
+horizontal_alignment = 1
+
+[node name="ButtonExit" type="Button" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme = ExtResource("6_cnjmi")
+icon = ExtResource("7_0w3w4")
+
+[connection signal="pressed" from="MarginContainer/ButtonExit" to="." method="_on_button_exit_pressed"]

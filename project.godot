@@ -15,6 +15,10 @@ run/main_scene="res://src/interfaces/titlescreen.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+DataManager="*res://src/util/data_manager.gd"
+
 [display]
 
 window/size/viewport_width=640
@@ -85,6 +89,8 @@ pause={
 2d_physics/layer_4="Conveyor Horizontal"
 2d_physics/layer_5="Conveyor Vertical"
 2d_physics/layer_6="Oil"
+2d_physics/layer_7="Collectable"
+2d_physics/layer_8="Fast Conveyor Vertical"
 
 [rendering]
 

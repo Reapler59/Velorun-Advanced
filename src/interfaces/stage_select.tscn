@@ -1,0 +1,98 @@
+[gd_scene load_steps=8 format=3 uid="uid://d4nhm02h16wwc"]
+
+[ext_resource type="Script" path="res://src/interfaces/stage_select.gd" id="1_axasp"]
+[ext_resource type="PackedScene" uid="uid://bsr4kcif0a44b" path="res://src/components/background.tscn" id="1_oci3e"]
+[ext_resource type="Theme" uid="uid://b1b8etb0755dh" path="res://res/themes/menu.theme" id="2_ogfx0"]
+[ext_resource type="PackedScene" uid="uid://ctvstv7nacsms" path="res://src/interfaces/stage_info.tscn" id="3_r3x0y"]
+[ext_resource type="Theme" uid="uid://dh8twwl5vhwf3" path="res://res/themes/close.theme" id="4_g14ul"]
+[ext_resource type="Texture2D" uid="uid://d16bva5bur0rm" path="res://assets/sprites/icons/icon_exit.png" id="5_hcdym"]
+[ext_resource type="PackedScene" uid="uid://70aasvkfignj" path="res://src/levels/stage_00.tscn" id="5_i3ara"]
+
+[node name="StageSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_axasp")
+
+[node name="Background" parent="." instance=ExtResource("1_oci3e")]
+speed = 160
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_ogfx0")
+theme_override_constants/margin_top = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+
+[node name="SelectStage" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Select Stage"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+layout_direction = 3
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 160
+columns = 4
+
+[node name="StageInfo4" parent="MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("3_r3x0y")]
+layout_mode = 2
+id = 3
+
+[node name="ButtonPlay" parent="MarginContainer/VBoxContainer/GridContainer/StageInfo4/MarginContainer/PanelContainer/VBoxContainer" index="3"]
+focus_neighbor_left = NodePath("../../../../../StageInfo3/MarginContainer/PanelContainer/VBoxContainer/ButtonPlay")
+focus_previous = NodePath("../../../../../StageInfo3/MarginContainer/PanelContainer/VBoxContainer/ButtonPlay")
+
+[node name="StageInfo3" parent="MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("3_r3x0y")]
+layout_mode = 2
+id = 2
+
+[node name="ButtonPlay" parent="MarginContainer/VBoxContainer/GridContainer/StageInfo3/MarginContainer/PanelContainer/VBoxContainer" index="3"]
+focus_neighbor_left = NodePath("../../../../../StageInfo2/MarginContainer/PanelContainer/VBoxContainer/ButtonPlay")
+focus_neighbor_right = NodePath("../../../../../StageInfo4/MarginContainer/PanelContainer/VBoxContainer/ButtonPlay")
+focus_next = NodePath("../../../../../StageInfo4/MarginContainer/PanelContainer/VBoxContainer/ButtonPlay")
+focus_previous = NodePath("../../../../../StageInfo2/MarginContainer/PanelContainer/VBoxContainer/ButtonPlay")
+
+[node name="StageInfo2" parent="MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("3_r3x0y")]
+layout_mode = 2
+id = 1
+
+[node name="ButtonPlay" parent="MarginContainer/VBoxContainer/GridContainer/StageInfo2/MarginContainer/PanelContainer/VBoxContainer" index="3"]
+focus_neighbor_left = NodePath("../../../../../StageInfo/MarginContainer/PanelContainer/VBoxContainer/ButtonPlay")
+focus_neighbor_right = NodePath("../../../../../StageInfo3/MarginContainer/PanelContainer/VBoxContainer/ButtonPlay")
+focus_next = NodePath("../../../../../StageInfo3/MarginContainer/PanelContainer/VBoxContainer/ButtonPlay")
+focus_previous = NodePath("../../../../../StageInfo/MarginContainer/PanelContainer/VBoxContainer/ButtonPlay")
+
+[node name="StageInfo" parent="MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("3_r3x0y")]
+layout_mode = 2
+stage = ExtResource("5_i3ara")
+
+[node name="ButtonPlay" parent="MarginContainer/VBoxContainer/GridContainer/StageInfo/MarginContainer/PanelContainer/VBoxContainer" index="3"]
+focus_neighbor_right = NodePath("../../../../../StageInfo2/MarginContainer/PanelContainer/VBoxContainer/ButtonPlay")
+focus_next = NodePath("../../../../../StageInfo2/MarginContainer/PanelContainer/VBoxContainer/ButtonPlay")
+
+[node name="ButtonExit" type="Button" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme = ExtResource("4_g14ul")
+icon = ExtResource("5_hcdym")
+
+[connection signal="pressed" from="MarginContainer/ButtonExit" to="." method="_on_button_exit_pressed"]
+
+[editable path="MarginContainer/VBoxContainer/GridContainer/StageInfo4"]
+[editable path="MarginContainer/VBoxContainer/GridContainer/StageInfo3"]
+[editable path="MarginContainer/VBoxContainer/GridContainer/StageInfo2"]
+[editable path="MarginContainer/VBoxContainer/GridContainer/StageInfo"]

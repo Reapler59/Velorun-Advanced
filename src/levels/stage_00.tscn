@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://70aasvkfignj"]
+[gd_scene load_steps=11 format=4 uid="uid://70aasvkfignj"]
 
 [ext_resource type="PackedScene" uid="uid://g8vsd3xr5li4" path="res://src/interfaces/time_ui.tscn" id="1_1joem"]
 [ext_resource type="Script" path="res://src/levels/stage.gd" id="1_puler"]
@@ -8,12 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://dhau8xj5o3ci6" path="res://src/entities/timed_platform.tscn" id="3_h43hu"]
 [ext_resource type="PackedScene" uid="uid://s6sh8rnfc3ba" path="res://src/entities/player.tscn" id="3_mg7qb"]
 [ext_resource type="Script" path="res://src/components/borders.gd" id="3_w2n81"]
+[ext_resource type="PackedScene" uid="uid://qryojj4hv1wt" path="res://src/entities/card.tscn" id="8_amwta"]
 [ext_resource type="PackedScene" uid="uid://dvq85pgjk3hr2" path="res://src/entities/exit.tscn" id="8_r7k7q"]
 
-[node name="Stage00" type="Node2D" node_paths=PackedStringArray("border", "exit", "player", "stage_ui")]
+[node name="Stage00" type="Node2D" node_paths=PackedStringArray("stage_cards", "border", "exit", "player", "stage_ui")]
 script = ExtResource("1_puler")
-stage_name = "Tutorial"
 stage_end = 2240
+stage_cards = [NodePath("Cards/Card"), NodePath("Cards/Card2"), NodePath("Cards/Card3")]
 border = NodePath("Borders")
 exit = NodePath("Exit")
 player = NodePath("Player")
@@ -72,6 +73,19 @@ position = Vector2(1872, 80)
 
 [node name="TimedPlatform9" parent="Platforms" instance=ExtResource("3_h43hu")]
 position = Vector2(1904, 80)
+
+[node name="Cards" type="Node2D" parent="."]
+
+[node name="Card" parent="Cards" instance=ExtResource("8_amwta")]
+position = Vector2(528, -16)
+
+[node name="Card2" parent="Cards" instance=ExtResource("8_amwta")]
+position = Vector2(1168, 208)
+id = 1
+
+[node name="Card3" parent="Cards" instance=ExtResource("8_amwta")]
+position = Vector2(2032, -16)
+id = 2
 
 [node name="Player" parent="." instance=ExtResource("3_mg7qb")]
 position = Vector2(112, 272)
