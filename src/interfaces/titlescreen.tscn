@@ -1,0 +1,114 @@
+[gd_scene load_steps=5 format=3 uid="uid://r3ha1kypddk4"]
+
+[ext_resource type="PackedScene" uid="uid://bsr4kcif0a44b" path="res://src/components/background.tscn" id="1_fv717"]
+[ext_resource type="Script" path="res://src/interfaces/titlescreen.gd" id="1_hkxjx"]
+[ext_resource type="Theme" uid="uid://b1b8etb0755dh" path="res://res/themes/menu.theme" id="2_vgfjt"]
+[ext_resource type="Texture2D" uid="uid://c4qg700ncg65l" path="res://assets/sprites/ui/logo.png" id="3_3s5k6"]
+
+[node name="Titlescreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hkxjx")
+
+[node name="Background" parent="." instance=ExtResource("1_fv717")]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_vgfjt")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Logo" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_3s5k6")
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Logo"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 2.0
+offset_bottom = 80.0
+grow_horizontal = 2
+theme = ExtResource("2_vgfjt")
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Velo Run
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubTitle" type="Label" parent="MarginContainer/VBoxContainer/Logo"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 89.0
+offset_bottom = 115.0
+grow_horizontal = 2
+theme = ExtResource("2_vgfjt")
+theme_override_font_sizes/font_size = 14
+text = "Advanced Edition"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_vgfjt")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="ButtonPlay" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../ButtonOptions")
+focus_next = NodePath("../ButtonOptions")
+theme = ExtResource("2_vgfjt")
+text = "Play"
+
+[node name="ButtonOptions" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../ButtonPlay")
+focus_neighbor_bottom = NodePath("../ButtonCredits")
+focus_next = NodePath("../ButtonCredits")
+focus_previous = NodePath("../ButtonPlay")
+theme = ExtResource("2_vgfjt")
+text = "Options"
+
+[node name="ButtonCredits" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../ButtonOptions")
+focus_neighbor_bottom = NodePath("../ButtonExit")
+focus_next = NodePath("../ButtonExit")
+focus_previous = NodePath("../ButtonOptions")
+text = "Credits"
+
+[node name="ButtonExit" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../ButtonCredits")
+focus_previous = NodePath("../ButtonCredits")
+theme = ExtResource("2_vgfjt")
+text = "End Game"
+
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/ButtonPlay" to="." method="_on_button_play_mouse_entered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/ButtonPlay" to="." method="_on_button_play_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/ButtonOptions" to="." method="_on_button_options_mouse_entered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/ButtonOptions" to="." method="_on_button_options_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/ButtonCredits" to="." method="_on_button_credits_mouse_entered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/ButtonCredits" to="." method="_on_button_credits_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/ButtonExit" to="." method="_on_button_exit_mouse_entered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/ButtonExit" to="." method="_on_button_exit_pressed"]
