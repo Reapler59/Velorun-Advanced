@@ -79,15 +79,15 @@ is_up = false
 position = Vector2(1104, -80)
 
 [node name="Card2" parent="Cards" instance=ExtResource("6_sd0m4")]
-position = Vector2(1584, -208)
+position = Vector2(1584, -216)
 id = 1
 
 [node name="Card3" parent="Cards" instance=ExtResource("6_sd0m4")]
-position = Vector2(1952, -176)
+position = Vector2(1952, -208)
 id = 2
 
 [node name="Player" parent="." instance=ExtResource("7_e62yv")]
-position = Vector2(80, 176)
+position = Vector2(80, 144)
 
 [node name="Exit" parent="." instance=ExtResource("8_imoyu")]
 position = Vector2(2576, -288)

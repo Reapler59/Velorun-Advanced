@@ -7,6 +7,7 @@ extends StaticBody2D
 
 @export var cooldown := 1.0
 @export var is_up : bool = true
+@export var is_static: bool = false
 
 var cooldown_timer : Timer
 
@@ -22,7 +23,8 @@ func _ready():
 	if not is_up:
 		sprite.frame = 4
 	
-	cooldown_timer.start()
+	if not is_static:
+		cooldown_timer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

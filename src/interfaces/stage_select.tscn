@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d4nhm02h16wwc"]
+[gd_scene load_steps=9 format=3 uid="uid://d4nhm02h16wwc"]
 
 [ext_resource type="Script" path="res://src/interfaces/stage_select.gd" id="1_axasp"]
 [ext_resource type="PackedScene" uid="uid://bsr4kcif0a44b" path="res://src/components/background.tscn" id="1_oci3e"]
@@ -7,6 +7,7 @@
 [ext_resource type="Theme" uid="uid://dh8twwl5vhwf3" path="res://res/themes/close.theme" id="4_g14ul"]
 [ext_resource type="Texture2D" uid="uid://d16bva5bur0rm" path="res://assets/sprites/icons/icon_exit.png" id="5_hcdym"]
 [ext_resource type="PackedScene" uid="uid://70aasvkfignj" path="res://src/levels/stage_00.tscn" id="5_i3ara"]
+[ext_resource type="PackedScene" uid="uid://b6cgcqo4dqap0" path="res://src/levels/stage_01.tscn" id="5_qowt6"]
 
 [node name="StageSelect" type="Control"]
 layout_mode = 3
@@ -68,6 +69,7 @@ focus_previous = NodePath("../../../../../StageInfo2/MarginContainer/PanelContai
 [node name="StageInfo2" parent="MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("3_r3x0y")]
 layout_mode = 2
 id = 1
+stage = ExtResource("5_qowt6")
 
 [node name="ButtonPlay" parent="MarginContainer/VBoxContainer/GridContainer/StageInfo2/MarginContainer/PanelContainer/VBoxContainer" index="3"]
 focus_neighbor_left = NodePath("../../../../../StageInfo/MarginContainer/PanelContainer/VBoxContainer/ButtonPlay")
