@@ -8,8 +8,6 @@ class_name Player
 @onready var camera = $Camera2D
 @onready var ray_floor = $RayCasts/RayFloor
 @onready var ray_wall = $RayCasts/RayWall
-@onready var ray_conveyor = $RayCasts/RayConveyor
-@onready var ray_fast_conveyor = $RayCasts/RayFastConveyor
 
 enum Direction {LEFT, RIGHT}
 
@@ -63,7 +61,6 @@ func _physics_process(delta) -> void:
 	handle_movement(delta)
 	handle_jump(delta)
 	handle_falling(delta)
-	handle_raycast_collisions(delta)
 	
 	move_and_slide()
 
@@ -84,7 +81,7 @@ func handle_movement(delta) -> void:
 	else:	
 		velocity.x = move_toward(velocity.x, 0, ((friction * friction_modifier) * delta) * floor_damping)
 	
-	if velocity == Vector2.ZERO or velocity.x == speed_modifier_x:
+	if velocity == Vector2.ZERO or velocity.x == speed_modifier_x and not ray_wall.is_colliding():
 		animation_body.play("idle")
 
 func handle_jump(delta) -> void:
@@ -94,14 +91,17 @@ func handle_jump(delta) -> void:
 		if is_on_floor():
 			animation_eyes.play("look_up")
 			velocity.y = jump_impulse
+			jump_buffer.stop()
 		elif coyote_jump_available:
 			animation_eyes.play("look_up")
 			velocity.y = jump_impulse
 			coyote_jump_available = false
-		elif not is_on_floor() and ray_wall.is_colliding():
-			velocity.y = wall_jump_impulse
-			velocity.x = wall_jump_pushback * -direction_multiplier
-			switch_direction()
+			jump_buffer.stop()
+	if jump_attempted and not is_on_floor() and ray_wall.is_colliding():
+		velocity.y = wall_jump_impulse
+		velocity.x = wall_jump_pushback * -direction_multiplier
+		switch_direction()
+		jump_buffer.stop()
 	
 	if jump_attempted and not is_on_floor():
 		jump_buffer.start()
@@ -129,10 +129,9 @@ func handle_falling(delta):
 			velocity.y = gravity(horizontal_input) * delta
 
 func gravity(input_dir : float = 0) -> float:
-	if velocity.y > 0 and ray_wall.is_colliding() and not is_on_conveyor_wall:
+	if velocity.y > 0 and ray_wall.is_colliding():
+		animation_body.play("wall_slide")
 		return WALL_GRAVITY
-	elif is_on_conveyor_wall:
-		return 0
 	else:
 		return GRAVITY if velocity.y < 0 else FALL_GRAVITY
 
@@ -142,12 +141,10 @@ func change_direction(new_direction: Direction) -> void:
 		direction_multiplier = -1
 		sprites.scale.x = -1
 		ray_wall.target_position.x = -16
-		ray_conveyor.target_position.x = -16
 	else:
 		direction_multiplier = 1
 		sprites.scale.x = 1
 		ray_wall.target_position.x = 16
-		ray_conveyor.target_position.x = 16
 
 func switch_direction() -> void:
 	if facing_direction == Direction.LEFT:
@@ -158,40 +155,9 @@ func switch_direction() -> void:
 	direction_multiplier *= -1
 	sprites.scale.x *= -1
 	ray_wall.target_position.x *= -1
-	ray_conveyor.target_position.x *= -1
 
 func set_camera_limit(value: int):
 	camera.limit_right = value
-
-func handle_raycast_collisions(delta) -> void:
-	if ray_conveyor.is_colliding():
-		is_on_conveyor_wall = true
-		speed_modifier_y = -100
-		
-		if velocity.y == 0:
-			velocity.y = speed_modifier_y
-		else:
-			velocity.y = move_toward(velocity.y, velocity.y + speed_modifier_y, delta)
-	else:
-		is_on_conveyor_wall = false
-		speed_modifier_y = 0
-	
-	if ray_fast_conveyor.is_colliding():
-		is_on_conveyor_wall = true
-		speed_modifier_y = -300
-		
-		if velocity.y == 0:
-			velocity.y = speed_modifier_y
-		else:
-			velocity.y = move_toward(velocity.y, velocity.y + speed_modifier_y, delta)
-	else:
-		is_on_conveyor_wall = false
-		speed_modifier_y = 0
-	
-	if ray_floor.is_colliding():
-		friction_modifier = 0.1
-	else:
-		friction_modifier = 1
 
 func coyote_timeout():
 	coyote_jump_available = false
