@@ -199,3 +199,4 @@ collision_mask = 32
 [node name="RayWall" type="RayCast2D" parent="RayCasts"]
 position = Vector2(0, -10)
 target_position = Vector2(16, 0)
+collision_mask = 33

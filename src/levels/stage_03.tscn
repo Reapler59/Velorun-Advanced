@@ -12,7 +12,7 @@
 [node name="Stage03" type="Node2D" node_paths=PackedStringArray("stage_cards", "border", "exit", "player", "stage_ui")]
 script = ExtResource("1_dyjsk")
 stage_end = 3328
-stage_cards = [NodePath("Cards/Card"), NodePath("Cards/Card2"), NodePath("Cards/Card3")]
+stage_cards = [NodePath("Cards/Card3"), NodePath("Cards/Card2"), NodePath("Cards/Card")]
 stage_id = 3
 border = NodePath("Borders")
 exit = NodePath("Exit")

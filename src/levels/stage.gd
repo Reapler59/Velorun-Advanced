@@ -60,7 +60,7 @@ func _process(delta):
 		level_time = "%02d:%02d:%02d" % [min, sec, msec]
 		stage_ui.set_time(level_time)
 	else:
-		var data = StageData.new()
+		var data = DataManager.get_stage_data(stage_id)
 		data.set_data(level_name, level_time, level_cards)
 		DataManager.set_stage_data(stage_id, data)
 		await get_tree().create_timer(1).timeout
