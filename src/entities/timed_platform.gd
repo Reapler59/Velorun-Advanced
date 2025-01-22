@@ -5,7 +5,7 @@ extends StaticBody2D
 @onready var sprite = $Sprite2D
 
 
-@export var cooldown := 1.0
+@export var cooldown := 1.2
 @export var is_up : bool = true
 @export var is_static: bool = false
 

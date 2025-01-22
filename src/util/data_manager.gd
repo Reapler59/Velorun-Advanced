@@ -18,3 +18,8 @@ func set_stage_data(id: int, data: StageData):
 
 func get_stage_data(id: int) -> StageData:
 	return stages[id]
+
+func reset_data() -> void:
+	for i in stages:
+		stages[i] = StageData.new()
+		stages[i].stage_name = "Stage " + i

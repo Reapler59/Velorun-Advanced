@@ -76,17 +76,25 @@ layout_mode = 2
 
 [node name="ButtonPlay" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
-focus_neighbor_bottom = NodePath("../ButtonCredits")
-focus_next = NodePath("../ButtonCredits")
+focus_neighbor_bottom = NodePath("../ButtonOptions")
+focus_next = NodePath("../ButtonOptions")
 theme = ExtResource("2_vgfjt")
 text = "Play"
 
-[node name="ButtonCredits" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+[node name="ButtonOptions" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../ButtonPlay")
+focus_neighbor_bottom = NodePath("../ButtonCredits")
+focus_next = NodePath("../ButtonCredits")
+focus_previous = NodePath("../ButtonPlay")
+text = "Settings"
+
+[node name="ButtonCredits" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../ButtonOptions")
 focus_neighbor_bottom = NodePath("../ButtonExit")
 focus_next = NodePath("../ButtonExit")
-focus_previous = NodePath("../ButtonPlay")
+focus_previous = NodePath("../ButtonOptions")
 text = "Credits"
 
 [node name="ButtonExit" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
@@ -98,6 +106,8 @@ text = "End Game"
 
 [connection signal="mouse_entered" from="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/ButtonPlay" to="." method="_on_button_play_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/ButtonPlay" to="." method="_on_button_play_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/ButtonOptions" to="." method="_on_button_options_mouse_entered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/ButtonOptions" to="." method="_on_button_options_pressed"]
 [connection signal="mouse_entered" from="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/ButtonCredits" to="." method="_on_button_credits_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/ButtonCredits" to="." method="_on_button_credits_pressed"]
 [connection signal="mouse_entered" from="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/ButtonExit" to="." method="_on_button_exit_mouse_entered"]
