@@ -16,7 +16,7 @@ var stage_select = load("res://src/interfaces/stage_select.tscn")
 
 var min: int = 0
 var sec: int = 0
-var msec: int = 0
+var hsec: int = 0
 
 var time: Timer
 var has_reached_exit: bool = false
@@ -50,14 +50,14 @@ func _process(delta):
 	has_reached_exit = exit.reached_exit()
 	
 	if not has_reached_exit:
-		if msec == 100:
+		if hsec == 100:
 			sec += 1
-			msec = 0
+			hsec = 0
 		if sec == 60:
 			min += 1
 			sec = 0
 		
-		level_time = "%02d:%02d:%02d" % [min, sec, msec]
+		level_time = "%02d:%02d:%02d" % [min, sec, hsec]
 		stage_ui.set_time(level_time)
 	else:
 		var data = DataManager.get_stage_data(stage_id)
@@ -78,4 +78,4 @@ func handle_cards() -> void:
 
 
 func timeout():
-	msec += 1
+	hsec += 1

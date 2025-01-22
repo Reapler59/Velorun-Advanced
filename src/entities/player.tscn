@@ -193,6 +193,12 @@ drag_top_margin = 0.3
 [node name="RayCasts" type="Node2D" parent="."]
 
 [node name="RayFloor" type="RayCast2D" parent="RayCasts"]
+position = Vector2(-15, 0)
+target_position = Vector2(0, 20)
+collision_mask = 32
+
+[node name="RayFloor2" type="RayCast2D" parent="RayCasts"]
+position = Vector2(15, 0)
 target_position = Vector2(0, 20)
 collision_mask = 32
 

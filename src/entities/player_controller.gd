@@ -7,6 +7,7 @@ class_name Player
 @onready var animation_eyes = $AnimationPlayerEyes
 @onready var camera = $Camera2D
 @onready var ray_floor = $RayCasts/RayFloor
+@onready var ray_floor_2: RayCast2D = $RayCasts/RayFloor2
 @onready var ray_wall = $RayCasts/RayWall
 
 enum Direction {LEFT, RIGHT}
@@ -137,7 +138,7 @@ func gravity(input_dir : float = 0) -> float:
 		return GRAVITY if velocity.y < 0 else FALL_GRAVITY
 
 func handle_oil() -> void:
-	if ray_floor.is_colliding():
+	if ray_floor.is_colliding() or ray_floor_2.is_colliding():
 		friction = 100
 	else:
 		friction = 1800
