@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://d4nhm02h16wwc"]
+[gd_scene load_steps=11 format=3 uid="uid://d4nhm02h16wwc"]
 
 [ext_resource type="Script" path="res://src/interfaces/stage_select.gd" id="1_axasp"]
 [ext_resource type="PackedScene" uid="uid://bsr4kcif0a44b" path="res://src/components/background.tscn" id="1_oci3e"]
 [ext_resource type="Theme" uid="uid://b1b8etb0755dh" path="res://res/themes/menu.theme" id="2_ogfx0"]
 [ext_resource type="PackedScene" uid="uid://ctvstv7nacsms" path="res://src/interfaces/stage_info.tscn" id="3_r3x0y"]
 [ext_resource type="Theme" uid="uid://dh8twwl5vhwf3" path="res://res/themes/close.theme" id="4_g14ul"]
+[ext_resource type="PackedScene" uid="uid://6nj7aofggf7n" path="res://src/levels/stage_03.tscn" id="5_033sl"]
 [ext_resource type="Texture2D" uid="uid://d16bva5bur0rm" path="res://assets/sprites/icons/icon_exit.png" id="5_hcdym"]
 [ext_resource type="PackedScene" uid="uid://70aasvkfignj" path="res://src/levels/stage_00.tscn" id="5_i3ara"]
 [ext_resource type="PackedScene" uid="uid://b6cgcqo4dqap0" path="res://src/levels/stage_01.tscn" id="5_qowt6"]
@@ -52,6 +53,7 @@ columns = 4
 [node name="StageInfo4" parent="MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("3_r3x0y")]
 layout_mode = 2
 id = 3
+stage = ExtResource("5_033sl")
 
 [node name="ButtonPlay" parent="MarginContainer/VBoxContainer/GridContainer/StageInfo4/MarginContainer/PanelContainer/VBoxContainer" index="3"]
 focus_neighbor_left = NodePath("../../../../../StageInfo3/MarginContainer/PanelContainer/VBoxContainer/ButtonPlay")

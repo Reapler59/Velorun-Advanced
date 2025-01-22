@@ -27,6 +27,8 @@ var level_cards: Array[bool]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	
 	border.set_border(stage_end)
 	player.set_camera_limit(stage_end)
 	

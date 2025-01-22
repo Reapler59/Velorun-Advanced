@@ -61,6 +61,7 @@ func _physics_process(delta) -> void:
 	handle_movement(delta)
 	handle_jump(delta)
 	handle_falling(delta)
+	handle_oil()
 	
 	move_and_slide()
 
@@ -134,6 +135,12 @@ func gravity(input_dir : float = 0) -> float:
 		return WALL_GRAVITY
 	else:
 		return GRAVITY if velocity.y < 0 else FALL_GRAVITY
+
+func handle_oil() -> void:
+	if ray_floor.is_colliding():
+		friction = 100
+	else:
+		friction = 1800
 
 func change_direction(new_direction: Direction) -> void:
 	facing_direction = new_direction
