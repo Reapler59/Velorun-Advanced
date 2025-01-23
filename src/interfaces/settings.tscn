@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://che3aplcls8ou"]
+[gd_scene load_steps=8 format=3 uid="uid://che3aplcls8ou"]
 
 [ext_resource type="PackedScene" uid="uid://bsr4kcif0a44b" path="res://src/components/background.tscn" id="1_7d1le"]
 [ext_resource type="Theme" uid="uid://b1b8etb0755dh" path="res://res/themes/menu.theme" id="1_jk118"]
+[ext_resource type="Script" path="res://src/interfaces/settings.gd" id="2_8v8xt"]
+[ext_resource type="Theme" uid="uid://dh8twwl5vhwf3" path="res://res/themes/close.theme" id="3_tq82m"]
+[ext_resource type="Texture2D" uid="uid://d16bva5bur0rm" path="res://assets/sprites/icons/icon_exit.png" id="4_ooufd"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n72uu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yj33k"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -11,6 +18,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_jk118")
+script = ExtResource("2_8v8xt")
 
 [node name="Background" parent="." instance=ExtResource("1_7d1le")]
 speed = 160
@@ -29,27 +37,76 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="Fullscreen" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Fullscreen" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 2
 
-[node name="CheckBox" type="CheckBox" parent="MarginContainer/PanelContainer/VBoxContainer/Fullscreen"]
+[node name="CheckBox" type="CheckBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Fullscreen"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../../Resolution/OptionButton")
+focus_next = NodePath("../../Resolution/OptionButton")
 theme = ExtResource("1_jk118")
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Fullscreen"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Fullscreen"]
 layout_mode = 2
 text = "Fullscreen"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
+[node name="Resolution" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Resolution"]
 layout_mode = 2
 text = "Resolution"
 
-[node name="OptionButton" type="OptionButton" parent="MarginContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Resolution"]
 layout_mode = 2
+theme_override_constants/separation = 35
+theme_override_styles/separator = SubResource("StyleBoxTexture_n72uu")
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Resolution"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../Fullscreen/CheckBox")
+focus_neighbor_bottom = NodePath("../../ButtonReset")
+focus_next = NodePath("../../ButtonReset")
+focus_previous = NodePath("../../Fullscreen/CheckBox")
+selected = 2
+item_count = 3
+popup/item_0/text = "1920x1080"
+popup/item_1/text = "1600x900"
+popup/item_1/id = 1
+popup/item_2/text = "1280x720"
+popup/item_2/id = 2
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+theme_override_styles/separator = SubResource("StyleBoxEmpty_yj33k")
+
+[node name="ButtonReset" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../Resolution/OptionButton")
+focus_neighbor_bottom = NodePath("../../../../ButtonExit")
+focus_next = NodePath("../../../../ButtonExit")
+focus_previous = NodePath("../Resolution/OptionButton")
+text = "Reset Progress"
+
+[node name="ButtonExit" type="Button" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+focus_neighbor_top = NodePath("../PanelContainer/MarginContainer/VBoxContainer/ButtonReset")
+focus_previous = NodePath("../PanelContainer/MarginContainer/VBoxContainer/ButtonReset")
+theme = ExtResource("3_tq82m")
+icon = ExtResource("4_ooufd")
+
+[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Fullscreen/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="item_selected" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Resolution/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonReset" to="." method="_on_button_reset_pressed"]
+[connection signal="pressed" from="MarginContainer/ButtonExit" to="." method="_on_button_exit_pressed"]

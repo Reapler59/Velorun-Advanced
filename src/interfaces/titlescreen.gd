@@ -8,6 +8,7 @@ extends Control
 
 @onready var stage_select = load("res://src/interfaces/stage_select.tscn")
 @onready var credits = load("res://src/interfaces/credits.tscn")
+@onready var settings = load("res://src/interfaces/settings.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,7 +28,7 @@ func _on_button_credits_pressed():
 	get_tree().change_scene_to_packed(credits)
 	
 func _on_button_options_pressed() -> void:
-	pass # Replace with function body.
+	get_tree().change_scene_to_packed(settings)
 
 func _on_button_exit_pressed():
 	get_tree().quit()
