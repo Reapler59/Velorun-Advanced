@@ -21,6 +21,7 @@ func _on_button_exit_pressed() -> void:
 
 func _on_button_reset_pressed() -> void:
 	DataManager.reset_data()
+	DataManager.save_data()
 
 
 func _on_check_box_toggled(toggled_on: bool) -> void:

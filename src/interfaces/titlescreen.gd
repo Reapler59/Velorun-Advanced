@@ -10,6 +10,9 @@ extends Control
 @onready var credits = load("res://src/interfaces/credits.tscn")
 @onready var settings = load("res://src/interfaces/settings.tscn")
 
+func _init():
+	DataManager.load_data()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	button_exit.grab_focus()

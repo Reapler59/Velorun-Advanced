@@ -63,14 +63,24 @@ func _process(delta):
 		var data = DataManager.get_stage_data(stage_id)
 		data.set_data(level_name, level_time, level_cards)
 		DataManager.set_stage_data(stage_id, data)
+		DataManager.save_data()
 		await get_tree().create_timer(1).timeout
 		change_scene()
 	
 	if Input.is_action_just_pressed("pause"):
 		change_scene()
+	elif Input.is_action_just_pressed("reload"):
+		reload_scene()
 
 func change_scene() -> void:
 	get_tree().change_scene_to_packed(stage_select)
+
+func reload_scene() -> void:
+	var current_scene = get_tree().current_scene
+	if current_scene != null:
+		var packed_scene = ResourceLoader.load(current_scene.scene_file_path)
+		if packed_scene != null:
+			get_tree().change_scene_to_packed(packed_scene)
 
 func handle_cards() -> void:
 	for i in stage_cards.size():
