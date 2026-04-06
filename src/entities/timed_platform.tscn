@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dhau8xj5o3ci6"]
 
 [ext_resource type="Texture2D" uid="uid://l2tbodtchere" path="res://assets/sprites/entities/platform.png" id="1_hswu7"]
-[ext_resource type="Script" path="res://src/entities/timed_platform.gd" id="1_sjdhl"]
+[ext_resource type="Script" uid="uid://cs2j73wpndrpp" path="res://src/entities/timed_platform.gd" id="1_sjdhl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mquln"]
 size = Vector2(32, 9)
@@ -58,9 +58,9 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6ve8w"]
 resource_local_to_scene = true
 _data = {
-"RESET": SubResource("Animation_qj6os"),
-"down": SubResource("Animation_oh7om"),
-"up": SubResource("Animation_n2vkf")
+&"RESET": SubResource("Animation_qj6os"),
+&"down": SubResource("Animation_oh7om"),
+&"up": SubResource("Animation_n2vkf")
 }
 
 [node name="TimedPlatform" type="StaticBody2D"]

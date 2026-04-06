@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://e5t1e2mqkrk2"]
 
-[ext_resource type="Script" path="res://src/interfaces/credits.gd" id="1_4enfr"]
+[ext_resource type="Script" uid="uid://c0ibht1f3hu8o" path="res://src/interfaces/credits.gd" id="1_4enfr"]
 [ext_resource type="PackedScene" uid="uid://bsr4kcif0a44b" path="res://src/components/background.tscn" id="1_mounj"]
 [ext_resource type="Theme" uid="uid://b1b8etb0755dh" path="res://res/themes/menu.theme" id="2_2yh77"]
 [ext_resource type="FontFile" uid="uid://bl3r8uw0preii" path="res://assets/fonts/ThaleahFat.ttf" id="3_4kx0l"]

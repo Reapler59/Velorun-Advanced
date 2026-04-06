@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://s6sh8rnfc3ba"]
 
 [ext_resource type="Texture2D" uid="uid://qsfgi6k56r7h" path="res://assets/sprites/entities/player_body.png" id="1_8jowa"]
-[ext_resource type="Script" path="res://src/entities/player_controller.gd" id="1_ruo61"]
+[ext_resource type="Script" uid="uid://uct52jto716a" path="res://src/entities/player_controller.gd" id="1_ruo61"]
 [ext_resource type="Texture2D" uid="uid://dw0irexgxuf6r" path="res://assets/sprites/entities/player_eyes.png" id="2_hehrh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yt0kq"]
@@ -143,13 +143,13 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_12q7j"]
 _data = {
-"RESET": SubResource("Animation_868we"),
-"blink": SubResource("Animation_14fy6"),
-"idle": SubResource("Animation_kpsqs"),
-"look_down": SubResource("Animation_nkvjh"),
-"look_up": SubResource("Animation_i7r6r"),
-"move": SubResource("Animation_gpxnb"),
-"wall_slide": SubResource("Animation_fvlew")
+&"RESET": SubResource("Animation_868we"),
+&"blink": SubResource("Animation_14fy6"),
+&"idle": SubResource("Animation_kpsqs"),
+&"look_down": SubResource("Animation_nkvjh"),
+&"look_up": SubResource("Animation_i7r6r"),
+&"move": SubResource("Animation_gpxnb"),
+&"wall_slide": SubResource("Animation_fvlew")
 }
 
 [node name="Player" type="CharacterBody2D"]
@@ -174,12 +174,12 @@ shape = SubResource("RectangleShape2D_yt0kq")
 
 [node name="AnimationPlayerBody" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_12q7j")
+&"": SubResource("AnimationLibrary_12q7j")
 }
 
 [node name="AnimationPlayerEyes" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_12q7j")
+&"": SubResource("AnimationLibrary_12q7j")
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]

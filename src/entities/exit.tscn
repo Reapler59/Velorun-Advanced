@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dvq85pgjk3hr2"]
 
 [ext_resource type="Texture2D" uid="uid://ccu82nciwbqay" path="res://assets/sprites/entities/exit.png" id="1_qejqk"]
-[ext_resource type="Script" path="res://src/entities/exit.gd" id="1_tmdjy"]
+[ext_resource type="Script" uid="uid://dy37ov2g1jjky" path="res://src/entities/exit.gd" id="1_tmdjy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4k8tr"]
 size = Vector2(32, 64)
@@ -42,8 +42,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_38ub3"]
 _data = {
-"RESET": SubResource("Animation_d6fyt"),
-"close": SubResource("Animation_cs8ti")
+&"RESET": SubResource("Animation_d6fyt"),
+&"close": SubResource("Animation_cs8ti")
 }
 
 [node name="Exit" type="Node2D"]
